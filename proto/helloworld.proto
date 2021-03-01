@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+option objc_class_prefix = "NST_Task";
+
+package db_package;
+
+enum Status {
+  OK = 0;
+  NOT_OK = 1;
+}
+
+message StorageAddRequest {
+  int64 message_id = 1;
+  string request_value = 2;
+  int64 task_id = 3;
+}
+
+message StorageAddResponse {
+   int64 message_id = 1;
+   string response_value = 2;
+   Status task_status = 3;
+}
+
+service StorageService {
+  rpc add(StorageAddRequest) returns (StorageAddResponse) {}
+}
+
+
